@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Study Materials for Semester {{ semester_id }}</h2>
+
+    {% if materials %}
+        <ul class="list-group">
+            {% for material in materials %}
+                <li class="list-group-item">
+                    <a href="{% url 'download_material' material.id %}">{{ material.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-center text-muted">No study materials available for this semester.</p>
+    {% endif %}
+</div>
+{% endblock %}

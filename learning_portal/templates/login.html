@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}  <!-- ✅ Ensure static files are loaded -->
+
+{% block content %}
+<style>
+    /* Background Image */
+    body {
+        background: url("{% static 'portal/images/login.jpg' %}") no-repeat center center fixed;
+        background-size: cover;
+    }
+    
+    /* Enhanced Login Container */
+    .login-container {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 0;
+    }
+
+    /* Modern Card Design */
+    .login-card {
+        background: rgba(169, 164, 164, 0.137);
+        border-radius: 20px;
+        padding: 2.5rem;
+        width: 100%;
+        max-width: 450px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Form Styling */
+    .form-label {
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        padding: 0.8rem 1rem;
+        border: 2px solid #e0e0e0;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: var(--secondary-color);
+        box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+    }
+
+    /* Button Styling */
+    .login-btn {
+        background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+        border: none;
+        padding: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        margin-top: 1.5rem;
+    }
+
+    .login-btn:hover {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        transform: translateY(-2px);
+    }
+
+    /* Link Styling */
+    .register-link {
+        color: var(--secondary-color);
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .register-link:hover {
+        color: var(--primary-color);
+        text-decoration: underline;
+    }
+
+    /* Card Header */
+    .card-header {
+        background: transparent !important;
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .card-header h3 {
+        color: var(--primary-color);
+        font-weight: 700;
+        margin-bottom: 0;
+    }
+
+    /* Card Footer */
+    .card-footer {
+        background: transparent;
+        border-top: none;
+        padding-top: 1.5rem;
+        text-align: center;
+    }
+</style>
+
+<div class="login-container">
+    <div class="login-card">
+        <div class="card-header text-center">
+            <h3><i class="fas fa-user-circle me-2"></i>Login</h3>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label class="form-label">Username</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <input type="text" name="username" class="form-control" required>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">Password</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        <input type="password" name="password" class="form-control" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary login-btn w-100">
+                    <i class="fas fa-sign-in-alt me-2"></i>Login
+                </button>
+            </form>
+        </div>
+        <div class="card-footer">
+            <p class="mb-0">Don't have an account? <a href="{% url 'register' %}" class="register-link">Register here</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

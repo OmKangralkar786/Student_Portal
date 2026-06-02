@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+{% load static %}  <!-- ✅ Ensure static files are loaded -->
+
+{% block content %}
+<style>
+    /* Background Image with Overlay */
+    body {
+        background: linear-gradient(rgba(244, 243, 243, 0.063), rgba(254, 253, 253, 0)), url("{% static 'portal/images/home.jpg' %}") no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    /* Enhanced Container */
+    .home-container {
+        background: rgba(255, 255, 255, 0);
+        border-radius: 20px;
+        padding: 2.5rem;
+        margin-top: 2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Header Styling */
+    .home-header {
+        text-align: center;
+        margin-bottom: 2.5rem;
+    }
+
+    .home-header h2 {
+        color: var(--primary-color);
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    .home-header p {
+        color: var(--text-color);
+        font-size: 1.1rem;
+    }
+
+    /* Year Cards Styling */
+    .year-card {
+        height: 100%;
+        transition: transform 0.3s ease;
+    }
+
+    .year-card:hover {
+        transform: translateY(-10px);
+    }
+
+    .year-card .card-header {
+        border-radius: 15px 15px 0 0 !important;
+        padding: 1.5rem;
+    }
+
+    .year-card .card-body {
+        padding: 1.5rem;
+    }
+
+    /* Semester Button Styling */
+    .semester-btn {
+        margin-bottom: 1rem;
+        padding: 0.8rem;
+        font-weight: 600;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .semester-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: 0.5s;
+    }
+
+    .semester-btn:hover::before {
+        left: 100%;
+    }
+
+    .semester-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* First Year Styling */
+    .first-year .card-header {
+        background: linear-gradient(135deg, #3498db, #2980b9) !important;
+    }
+
+    .first-year .semester-btn {
+        background: #3498db;
+        border: 2px solid #3498db;
+        color: white;
+    }
+
+    .first-year .semester-btn:hover {
+        background: #2980b9;
+        border-color: #2980b9;
+    }
+
+    /* Second Year Styling */
+    .second-year .card-header {
+        background: linear-gradient(135deg, #2ecc71, #27ae60) !important;
+    }
+
+    .second-year .semester-btn {
+        background: #2ecc71;
+        border: 2px solid #2ecc71;
+        color: white;
+    }
+
+    .second-year .semester-btn:hover {
+        background: #27ae60;
+        border-color: #27ae60;
+    }
+
+    /* Third Year Styling */
+    .third-year .card-header {
+        background: linear-gradient(135deg, #e74c3c, #c0392b) !important;
+    }
+
+    .third-year .semester-btn {
+        background: #e74c3c;
+        border: 2px solid #e74c3c;
+        color: white;
+    }
+
+    .third-year .semester-btn:hover {
+        background: #c0392b;
+        border-color: #c0392b;
+    }
+</style>
+
+<div class="home-container">
+    <div class="home-header">
+        <h2><i class="fas fa-graduation-cap me-2"></i>Welcome to the Student Learning Portal</h2>
+        <p>Select your academic year and semester to access study materials.</p>
+    </div>
+
+    <div class="row g-4">
+        <!-- First Year -->
+        <div class="col-12 col-md-4">
+            <div class="card year-card first-year">
+                <div class="card-header text-white text-center">
+                    <h3><i class="fas fa-book-reader me-2"></i>1st Year</h3>
+                </div>
+                <div class="card-body text-center">
+                    <a href="{% url 'semester_courses' 1 %}" class="btn semester-btn w-100">
+                        <i class=""></i>1st Semester
+                    </a>
+                    <a href="{% url 'semester_courses' 2 %}" class="btn semester-btn w-100">
+                        <i class=""></i>2nd Semester
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second Year -->
+        <div class="col-12 col-md-4">
+            <div class="card year-card second-year">
+                <div class="card-header text-white text-center">
+                    <h3><i class="fas fa-book-reader me-2"></i>2nd Year</h3>
+                </div>
+                <div class="card-body text-center">
+                    <a href="{% url 'semester_courses' 3 %}" class="btn semester-btn w-100">
+                        <i class=""></i>3rd Semester
+                    </a>
+                    <a href="{% url 'semester_courses' 4 %}" class="btn semester-btn w-100">
+                        <i class=""></i>4th Semester
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Third Year -->
+        <div class="col-12 col-md-4">
+            <div class="card year-card third-year">
+                <div class="card-header text-white text-center">
+                    <h3><i class="fas fa-book-reader me-2"></i>3rd Year</h3>
+                </div>
+                <div class="card-body text-center">
+                    <a href="{% url 'semester_courses' 5 %}" class="btn semester-btn w-100">
+                        <i class=""></i>5th Semester
+                    </a>
+                    <a href="{% url 'semester_courses' 6 %}" class="btn semester-btn w-100">
+                        <i class=""></i>6th Semester
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
